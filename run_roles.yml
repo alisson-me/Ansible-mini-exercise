@@ -1,0 +1,8 @@
+- name: using roles to run tasks
+  hosts: datacenter 
+  become: true
+  roles:     
+   - pre_tasks
+   - file_mgr
+   - user_mgr
+   - install_package  

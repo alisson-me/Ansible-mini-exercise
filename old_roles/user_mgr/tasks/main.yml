@@ -1,0 +1,16 @@
+ - name: Create a user
+   user:
+     name: john
+     state: present
+     shell: /bin/bash
+
+ - name: Create a group
+   group:
+     name: developers
+     state: present
+
+ - name: Assign user to group
+   user:
+     name: john
+     groups: developers
+     append: yes

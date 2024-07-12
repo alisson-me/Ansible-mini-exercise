@@ -1,0 +1,21 @@
+---
+- name: install webserver based on os
+  hosts: datacenter
+  become: true
+  vars:
+     web_package:
+         RedHat: httpd
+         Debian: apache2
+
+  tasks:
+    - name: install server package
+      package: 
+        name: "{{web_package[ansible_facts['os_family']]}}"
+        state: present
+      when: ansible_facts['os_family'] in web_package 
+
+    - name: start httpd service if not started
+      service:
+         name: "{{web_package[ansible_facts['os_family']]}}"
+         enabled: true
+      when: ansible_os_family == "RedHat" or ansible_os_family == "Debian"        

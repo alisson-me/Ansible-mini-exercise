@@ -1,0 +1,10 @@
+- name: Install required packages
+  package:
+    name: "{{ item }}"
+    state: present
+  loop:
+    - tree
+    - git
+    - elinks
+    - unzip
+    - wget
